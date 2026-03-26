@@ -33,14 +33,14 @@ h1, h2, h3, .logo {
    ========================================= */
 header {
     position: fixed;
-    top: 0;         /* <--- THE FIX: Locks the bar to the top edge */
-    left: 0;        /* <--- THE FIX: Locks the bar to the left edge */
+    top: 0;         /* Locks the bar to the top edge */
+    left: 0;        /* Locks the bar to the left edge */
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px 60px;
-    z-index: 1000;
+    z-index: 100;   /* Lowered so Snipcart can slide OVER it */
     background: rgba(250, 248, 245, 0.15); 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -375,6 +375,7 @@ header {
     .services-grid, .essentials-grid { flex-direction: column; align-items: center; }
     .service-card, .product-card { width: 100%; max-width: 100%; }
 }
+
 /* =========================================
    PAGE TRANSITIONS & SMOOTH SCROLLING
    ========================================= */
@@ -388,16 +389,18 @@ html {
     animation: luxuryFadeIn 0.8s ease-in-out forwards;
 }
 
+/* FIX: Removed 'transform' to prevent breaking Snipcart cart drawer.
+   It now strictly fades opacity. 
+*/
 @keyframes luxuryFadeIn {
     0% {
         opacity: 0;
-        transform: translateY(15px);
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
     }
 }
+
 /* =========================================
    CONTACT PAGE (SLEEPWEALTH)
    ========================================= */
