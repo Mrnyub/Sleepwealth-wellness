@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleepwealth | Contact & Reservations</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="fade-in-page">
+
+    <header style="background: rgba(59, 51, 44, 1); box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+        <div class="logo">SLEEPWEALTH</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="index.html#services">Our Services</a></li>
+                <li><a href="index.html#shop">Essentials Shop</a></li>
+                <li><a href="contact.html" style="color: white; border-bottom: 1px solid white; padding-bottom: 5px;">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-cta">
+            <button class="book-btn snipcart-checkout" style="border-color: #FAF8F5; color: #FAF8F5;">
+                View Bag (<span class="snipcart-items-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            
+            <div class="contact-info">
+                <span class="tag" style="color: var(--sand);">Connect With Us</span>
+                <h2>Reserve Your <br>Sanctuary.</h2>
+                <p>Disconnect from the noise. Secure your time in our quiet rooms or book a dedicated massage chair session.</p>
+                
+                <div class="info-block">
+                    <h4>The Lounge</h4>
+                    <p>Nivel Hills, Lahug<br>Cebu City, 6000<br>Philippines</p>
+                </div>
+                
+                <div class="info-block">
+                    <h4>Sanctuary Hours</h4>
+                    <p>Tuesday – Sunday: 9:00 AM – 10:00 PM<br>Monday: Closed for deep restoration.</p>
+                </div>
+
+                <div class="info-block">
+                    <h4>Concierge</h4>
+                    <p>hello@sleepwealth.ph<br>+63 917 123 4567</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="input-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="service">Select Inquiry</label>
+                        <select id="service" required>
+                            <option value="" disabled selected>Choose a subject...</option>
+                            <option value="massage">Massage Chair Reservation</option>
+                            <option value="quiet-room">Quiet Room Access</option>
+                            <option value="products">Shop Essentials Inquiry</option>
+                            <option value="other">General Question</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="date">Preferred Date (Optional)</label>
+                        <input type="date" id="date">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" rows="4" placeholder="How can we help you find your peace?"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <div hidden id="snipcart" 
+         data-api-key="ZjcyM2M0YTAtOWQ5Zi00ODljLTkwZDQtMDY2Mzk1NTE3ZDMyNjM5MTAwMDE5Mzc3NTAxNTI1" 
+         data-currency="php"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
