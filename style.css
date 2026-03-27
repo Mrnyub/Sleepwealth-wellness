@@ -145,10 +145,10 @@ header {
 @keyframes luxuryFadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
 /* =========================================
-   CONTACT PAGE (STRICT NO-SQUISH LAYOUT)
+   CONTACT PAGE (FINAL CENTERED LAYOUT)
    ========================================= */
 .contact-section {
-    padding: 120px 20px; /* Safe padding so it never touches the screen edge */
+    padding: 120px 5% 100px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -166,11 +166,11 @@ header {
 }
 
 .contact-container {
-    display: flex; 
-    flex-direction: row;
+    display: grid; 
+    grid-template-columns: 4fr 6fr; /* 40% Brown Box, 60% White Box */
     background: white; 
-    width: 100%; 
-    max-width: 900px; /* Reduced width so it comfortably fits laptop screens */
+    width: 90%; 
+    max-width: 1000px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
     border-radius: 8px; 
     overflow: hidden;
@@ -180,10 +180,12 @@ header {
 }
 
 .contact-info { 
-    width: 40%; 
     background: rgba(92, 74, 61, 0.95); 
     color: white; 
-    padding: 50px 40px; 
+    padding: 60px 40px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically centers the text in the brown box */
 }
 .contact-info h2 { font-size: 42px; margin: 10px 0 20px; color: var(--sand); line-height: 1.1; }
 .contact-info p { font-size: 14px; color: rgba(250, 248, 245, 0.8); margin-bottom: 30px; }
@@ -192,10 +194,20 @@ header {
 .info-block h4 { font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--sand); margin-bottom: 5px; }
 .info-block p { margin-bottom: 0; font-size: 13px; line-height: 1.8; }
 
+/* THE FIX: This centers everything perfectly inside the white box */
 .contact-form { 
-    width: 60%; 
-    padding: 50px 40px; 
+    padding: 60px 40px; 
     background: white; 
+    display: flex;
+    align-items: center;      /* Centers vertically */
+    justify-content: center;  /* Centers horizontally */
+}
+
+/* Forces the input lines to stay a premium, readable width */
+#contactForm {
+    width: 100%;
+    max-width: 450px; 
+    margin: 0 auto;
 }
 
 .input-group { margin-bottom: 20px; width: 100%; }
@@ -223,14 +235,14 @@ header {
 .submit-btn:hover { background: var(--charcoal); color: white; }
 
 /* =========================================
-   MOBILE RESPONSIVENESS (TRIGGERS EARLIER FOR LAPTOPS)
+   MOBILE RESPONSIVENESS
    ========================================= */
-@media (max-width: 1024px) { 
+@media (max-width: 992px) { 
     .contact-container { 
-        flex-direction: column; /* Force the form to stack on top of each other! */
+        grid-template-columns: 1fr; /* Stacks boxes on small screens */
         max-width: 600px; 
     }
-    .contact-info, .contact-form { width: 100%; padding: 40px; }
+    .contact-info, .contact-form { padding: 40px 30px; }
     
     header { padding: 20px; flex-direction: column; gap: 15px; }
     .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px; }
