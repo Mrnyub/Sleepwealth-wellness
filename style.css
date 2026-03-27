@@ -62,7 +62,7 @@ header {
    ========================================= */
 .hero {
     height: 100vh; background-color: #A39182;
-    background-image: url('https://images.pexels.com/photos/6629088/pexels-photo-6629088.jpeg?auto=compress&cs=tinysrgb&w=1920');
+    background-image: url('https://images.pexels.com/photos/36234409/pexels-photo-36234409.jpeg');
     background-position: center; background-size: cover; background-attachment: fixed;
     display: flex; align-items: center; padding: 0 10%; position: relative;
 }
