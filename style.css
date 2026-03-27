@@ -404,18 +404,21 @@ html {
 /* =========================================
    CONTACT PAGE (SLEEPWEALTH)
    ========================================= */
+/* =========================================
+   CONTACT PAGE (SLEEPWEALTH)
+   ========================================= */
 .contact-section {
     padding: 150px 10% 100px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Updated to a cozy, atmospheric lounge background */
-    background-image: url('https://mrnyub.github.io/Sleepwealth-wellness/assets/pexels-photo-6629088.jpeg'); /* Make sure to host this image or use the one I described */
+    /* THE FIX: A direct, highly reliable image link that loads instantly */
+    background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    position: relative; /* For the dark overlay */
+    position: relative; 
 }
 
 /* Added dark overlay for better text readability across all elements */
