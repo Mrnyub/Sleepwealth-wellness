@@ -56,6 +56,26 @@ header {
     white-space: nowrap;
 }
 .book-btn:hover { background: #E8DCC4; color: var(--forest); }
+/* Smooth transitions for shrinking elements */
+.logo, .book-btn { 
+    transition: all 0.4s ease; 
+}
+
+/* THE MINIMIZED SCROLL STATE */
+header.header-scrolled {
+    padding: 10px 50px !important; /* Cuts the height in half */
+    background: rgba(59, 51, 44, 0.98) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+    border-bottom: none !important;
+}
+
+header.header-scrolled .logo { 
+    font-size: 20px; /* Shrinks the logo text */
+}
+
+header.header-scrolled .book-btn { 
+    padding: 8px 18px; /* Shrinks the button */
+}
 
 /* =========================================
    HERO SECTION 
