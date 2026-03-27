@@ -1,58 +1,49 @@
 /* =========================================
-   SLEEPWEALTH REST LOUNGE | CUSTOM JS
+   SLEEPWEALTH REST LOUNGE | JAVASCRIPT
    ========================================= */
 
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // ----------------------------------------------------
-    // 1. DYNAMIC HEADER SCROLL EFFECT
-    // ----------------------------------------------------
-    const header = document.querySelector('header');
-    
-    window.addEventListener('scroll', () => {
-        // If the user scrolls down more than 50 pixels
-        if (window.scrollY > 50) {
-            header.style.background = 'rgba(59, 51, 44, 0.98)'; // Solid Mocha Brown
-            header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
-            header.style.transition = 'all 0.4s ease';
-        } else {
-            // If they are at the very top of the page
-            header.style.background = 'rgba(250, 248, 245, 0.15)'; // Glassmorphism Transparent
+// 1. SMART HEADER SCROLL EFFECT
+const header = document.querySelector('header');
+const heroSection = document.querySelector('.hero'); // Checks if we are on the homepage
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        // When scrolled down, change to solid Mocha Brown on ALL pages
+        header.style.background = 'rgba(59, 51, 44, 0.98)';
+        header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+        header.style.borderBottom = 'none';
+    } else {
+        // When back at the top...
+        if (heroSection) {
+            // If on the Homepage, go back to the transparent glass effect
+            header.style.background = 'rgba(250, 248, 245, 0.15)';
             header.style.boxShadow = 'none';
+            header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+        } else {
+            // If on About or Contact page, stay solid Mocha
+            header.style.background = 'rgba(59, 51, 44, 1)';
+        }
+    }
+});
+
+// 2. LUXURY SCROLL REVEAL ANIMATIONS
+// Selects all the cards and blocks we want to animate
+const fadeElements = document.querySelectorAll('.service-card, .product-card, .team-card, .info-block');
+
+// Sets up the observer to watch when they appear on screen
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
         }
     });
+}, { threshold: 0.1 }); // Triggers when 10% of the element is visible
 
-    // ----------------------------------------------------
-    // 2. SMOOTH SCROLL REVEAL ANIMATIONS
-    // ----------------------------------------------------
-    // Select all the cards and text we want to animate
-    const revealElements = document.querySelectorAll('.service-card, .product-card, .exp-text, .exp-image');
-
-    // Set their initial hidden state
-    revealElements.forEach((el) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(40px)';
-        el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    });
-
-    // Create an Intersection Observer (Watches where the user is scrolling)
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            // When the element enters the screen
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                
-                // Stop watching the element once it has been revealed
-                observer.unobserve(entry.target); 
-            }
-        });
-    }, {
-        threshold: 0.15, // Trigger when 15% of the element is visible
-        rootMargin: "0px 0px -50px 0px" // Trigger slightly before it hits the bottom of the screen
-    });
-
-    // Start watching all the selected elements
-    revealElements.forEach(el => revealObserver.observe(el));
-
+// Applies the hidden starting state to each element
+fadeElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s ease-out';
+    observer.observe(el);
 });
