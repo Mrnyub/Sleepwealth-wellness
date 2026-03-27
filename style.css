@@ -11,7 +11,7 @@
 *, *::before, *::after { 
     margin: 0; 
     padding: 0; 
-    box-sizing: border-box; 
+    box-sizing: border-box !important; /* Aggressively prevents edge clipping */
 }
 
 html { scroll-behavior: smooth; }
@@ -61,8 +61,7 @@ header {
    HERO SECTION 
    ========================================= */
 .hero {
-    height: 100vh; 
-    background-color: #A39182;
+    height: 100vh; background-color: #A39182;
     background-image: url('https://images.pexels.com/photos/6629088/pexels-photo-6629088.jpeg?auto=compress&cs=tinysrgb&w=1920');
     background-position: center; background-size: cover; background-attachment: fixed;
     display: flex; align-items: center; padding: 0 10%; position: relative;
@@ -146,15 +145,15 @@ header {
 @keyframes luxuryFadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
 /* =========================================
-   CONTACT PAGE (CSS GRID FIX)
+   CONTACT PAGE (STRICT NO-SQUISH LAYOUT)
    ========================================= */
 .contact-section {
-    padding: 150px 5% 100px;
+    padding: 120px 20px; /* Safe padding so it never touches the screen edge */
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #4A4036; /* FALLBACK: Solid dark color if image is blocked */
+    background-color: #4A4036;
     background-image: url('https://images.pexels.com/photos/6629088/pexels-photo-6629088.jpeg?auto=compress&cs=tinysrgb&w=1920'); 
     background-size: cover;
     background-position: center;
@@ -163,15 +162,15 @@ header {
 
 .contact-section::before {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(59, 51, 44, 0.8); z-index: 1; /* Dark overlay for contrast */
+    background: rgba(59, 51, 44, 0.8); z-index: 1; 
 }
 
 .contact-container {
-    display: grid; 
-    grid-template-columns: 4fr 6fr; /* BULLETPROOF: 40% left column, 60% right column */
+    display: flex; 
+    flex-direction: row;
     background: white; 
-    width: 90%; 
-    max-width: 1000px;
+    width: 100%; 
+    max-width: 900px; /* Reduced width so it comfortably fits laptop screens */
     box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
     border-radius: 8px; 
     overflow: hidden;
@@ -181,29 +180,30 @@ header {
 }
 
 .contact-info { 
+    width: 40%; 
     background: rgba(92, 74, 61, 0.95); 
     color: white; 
-    padding: 60px 40px; 
+    padding: 50px 40px; 
 }
-.contact-info h2 { font-size: 42px; margin: 15px 0 25px; color: var(--sand); line-height: 1.1; }
-.contact-info p { font-size: 14px; color: rgba(250, 248, 245, 0.8); margin-bottom: 40px; }
+.contact-info h2 { font-size: 42px; margin: 10px 0 20px; color: var(--sand); line-height: 1.1; }
+.contact-info p { font-size: 14px; color: rgba(250, 248, 245, 0.8); margin-bottom: 30px; }
 
-.info-block { margin-bottom: 30px; }
-.info-block h4 { font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--sand); margin-bottom: 8px; }
+.info-block { margin-bottom: 25px; }
+.info-block h4 { font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--sand); margin-bottom: 5px; }
 .info-block p { margin-bottom: 0; font-size: 13px; line-height: 1.8; }
 
 .contact-form { 
-    padding: 60px 50px; 
+    width: 60%; 
+    padding: 50px 40px; 
     background: white; 
-    width: 100%; 
 }
-.input-group { margin-bottom: 25px; width: 100%; }
-.input-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--forest); margin-bottom: 10px; font-weight: 500; }
+
+.input-group { margin-bottom: 20px; width: 100%; }
+.input-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--forest); margin-bottom: 8px; font-weight: 500; }
 
 .input-group input, .input-group select, .input-group textarea {
     width: 100%; 
-    box-sizing: border-box; 
-    padding: 12px 5px; 
+    padding: 12px 0; 
     border: none; 
     border-bottom: 1px solid #DDD;
     background: transparent; 
@@ -223,13 +223,14 @@ header {
 .submit-btn:hover { background: var(--charcoal); color: white; }
 
 /* =========================================
-   MOBILE RESPONSIVENESS (FLAWLESS STACKING)
+   MOBILE RESPONSIVENESS (TRIGGERS EARLIER FOR LAPTOPS)
    ========================================= */
-@media (max-width: 992px) { 
+@media (max-width: 1024px) { 
     .contact-container { 
-        grid-template-columns: 1fr; /* Stacks the boxes vertically instead of side-by-side */
+        flex-direction: column; /* Force the form to stack on top of each other! */
+        max-width: 600px; 
     }
-    .contact-info, .contact-form { padding: 40px 30px; }
+    .contact-info, .contact-form { width: 100%; padding: 40px; }
     
     header { padding: 20px; flex-direction: column; gap: 15px; }
     .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px; }
