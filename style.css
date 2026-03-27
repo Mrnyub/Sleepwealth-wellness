@@ -146,7 +146,7 @@ header {
 @keyframes luxuryFadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
 /* =========================================
-   CONTACT PAGE (BULLETPROOF LAYOUT)
+   CONTACT PAGE (SLEEPWEALTH)
    ========================================= */
 .contact-section {
     padding: 150px 5% 100px;
@@ -163,15 +163,15 @@ header {
 
 .contact-section::before {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(59, 51, 44, 0.7); z-index: 1; /* Darkened slightly to ensure nav links are visible */
+    background: rgba(59, 51, 44, 0.7); z-index: 1; 
 }
 
 .contact-container {
     display: flex; 
-    flex-wrap: wrap; /* Allows the left and right boxes to cleanly stack if space gets tight */
+    flex-direction: row; /* Strict side-by-side layout */
     background: white; 
-    width: 100%; 
-    max-width: 1100px;
+    width: 90%; 
+    max-width: 1000px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
     border-radius: 8px; 
     overflow: hidden;
@@ -181,10 +181,10 @@ header {
 }
 
 .contact-info { 
-    flex: 1 1 400px; /* Tells browser: "Take up 400px, stretch if you can" */
+    width: 40%; /* Strictly takes up 40% of the box */
     background: rgba(92, 74, 61, 0.95); 
     color: white; 
-    padding: 60px; 
+    padding: 60px 40px; 
 }
 .contact-info h2 { font-size: 42px; margin: 15px 0 25px; color: var(--sand); line-height: 1.1; }
 .contact-info p { font-size: 14px; color: rgba(250, 248, 245, 0.8); margin-bottom: 40px; }
@@ -194,17 +194,16 @@ header {
 .info-block p { margin-bottom: 0; font-size: 13px; line-height: 1.8; }
 
 .contact-form { 
-    flex: 1 1 500px; /* Tells browser: "Take up 500px, stretch if you can" */
-    padding: 60px; 
+    width: 60%; /* Strictly takes up 60% of the box */
+    padding: 60px 50px; 
     background: white; 
 }
 .input-group { margin-bottom: 25px; width: 100%; }
 .input-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--forest); margin-bottom: 10px; font-weight: 500; }
 
-/* Forces inputs to respect padding and never overflow */
 .input-group input, .input-group select, .input-group textarea {
     width: 100%; 
-    box-sizing: border-box; 
+    box-sizing: border-box !important; /* Forces inputs to respect boundaries */
     padding: 12px 5px; 
     border: none; 
     border-bottom: 1px solid #DDD;
@@ -225,16 +224,20 @@ header {
 .submit-btn:hover { background: var(--charcoal); color: white; }
 
 /* =========================================
-   MOBILE RESPONSIVENESS (FLAWLESS BREAKPOINTS)
+   MOBILE RESPONSIVENESS (FLAWLESS STACKING)
    ========================================= */
 @media (max-width: 992px) { 
-    header { padding: 20px; flex-direction: column; gap: 15px; }
-    .nav-links { gap: 15px; justify-content: center; margin-bottom: 10px; }
-    
     .contact-container { flex-direction: column; width: 95%; }
-    .contact-info { padding: 40px 30px; }
-    .contact-form { padding: 40px 30px; }
+    .contact-info { width: 100%; padding: 40px 30px; }
+    .contact-form { width: 100%; padding: 40px 30px; }
     
+    header { padding: 20px; flex-direction: column; gap: 15px; }
+    .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px; }
     .hero-content h1 { font-size: 48px; }
     .hero-btns { flex-direction: column; }
+    .experience, .story-container { flex-direction: column; padding: 60px 5%; text-align: center; }
+    .exp-text, .exp-image, .story-text, .story-img { width: 100%; }
+    .story-img img, .exp-image img { height: 350px; }
+    .services-grid, .essentials-grid { flex-direction: column; align-items: center; }
+    .service-card, .product-card { width: 100%; max-width: 100%; }
 }
