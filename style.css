@@ -287,3 +287,10 @@ header {
     .team-img-wrapper { height: 350px; } 
     .exp-image img, .story-img img { height: 300px; }
 }
+/* Shrinks the header even further on mobile screens */
+    header.header-scrolled { 
+        padding: 10px 15px !important; 
+    }
+    header.header-scrolled .logo { 
+        font-size: 16px; 
+    }
