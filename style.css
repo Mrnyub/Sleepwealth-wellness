@@ -238,28 +238,52 @@ header {
 /* =========================================
    MOBILE RESPONSIVENESS (COMPACT & FLAWLESS)
    ========================================= */
+/* =========================================
+   MOBILE RESPONSIVENESS (COMPACT HEADER FIX)
+   ========================================= */
 @media (max-width: 992px) { 
-    /* 1. Shrink the Header so it doesn't cover the whole screen */
-    header { padding: 15px 20px; flex-direction: column; gap: 10px; }
-    .logo { font-size: 20px; }
-    .nav-links { gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 5px; }
-    .book-btn { padding: 8px 16px; font-size: 10px; }
+    /* 1. Sleek, App-Like Mobile Header */
+    header { 
+        padding: 15px; 
+        flex-direction: row; /* Keeps Logo and Button side-by-side */
+        flex-wrap: wrap; 
+        justify-content: space-between;
+    }
+    
+    .logo { font-size: 18px; order: 1; }
+    
+    .header-cta { order: 2; } /* Forces View Bag button to top right */
+    .book-btn { padding: 8px 14px; font-size: 10px; }
+    
+    /* Creates a swipeable horizontal menu to save vertical space! */
+    nav { order: 3; width: 100%; margin-top: 15px; }
+    .nav-links { 
+        justify-content: flex-start; 
+        flex-wrap: nowrap; /* Forces links onto one line */
+        overflow-x: auto;  /* Allows sideways swiping */
+        padding-bottom: 5px; 
+        gap: 20px;
+        -webkit-overflow-scrolling: touch; /* Smooth swiping on iPhones */
+    }
+    
+    /* Hides the ugly sideways scrollbar for a clean look */
+    .nav-links::-webkit-scrollbar { display: none; } 
 
-    /* 2. Shrink Giant Desktop Padding across ALL sections */
+    /* 2. Shrink Giant Desktop Padding */
     .hero-content h1 { font-size: 42px; margin: 15px 0 25px; }
     .experience, .services, .essentials-shop, .team-section, .story-section { 
-        padding: 60px 5%; /* Cut from 120px down to 60px */
-        gap: 40px; /* Cut gaps in half */
+        padding: 60px 5%; 
+        gap: 40px; 
     }
     
     /* 3. Fix Contact Form Spacing */
-    .contact-section { padding: 130px 5% 60px; } /* Keeps top padding for header, shrinks bottom */
+    .contact-section { padding: 130px 5% 60px; } 
     .contact-container { flex-direction: column; width: 100%; max-width: 100%; }
-    .contact-info { padding: 40px 20px; } /* Tighter text box */
-    .contact-form { padding: 40px 20px; } /* Tighter form box */
+    .contact-info { padding: 40px 20px; } 
+    .contact-form { padding: 40px 20px; } 
 
     /* 4. Fix Team Images */
     .team-grid { gap: 40px; }
-    .team-img-wrapper { height: 350px; } /* Shorter images for mobile scrolling */
+    .team-img-wrapper { height: 350px; } 
     .exp-image img, .story-img img { height: 300px; }
 }
