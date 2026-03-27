@@ -2,18 +2,18 @@
    SLEEPWEALTH REST LOUNGE | JAVASCRIPT
    ========================================= */
 
-// 1. SMART HEADER SCROLL EFFECT
+// 1. SMART HEADER SCROLL EFFECT (MOBILE OPTIMIZED)
 const header = document.querySelector('header');
 const heroSection = document.querySelector('.hero');
 
-window.addEventListener('scroll', () => {
+function checkScroll() {
     if (window.scrollY > 50) {
-        // Scrolled down state
+        // Scrolled down state (solid)
         header.style.background = 'rgba(59, 51, 44, 0.98)';
         header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
         header.style.borderBottom = 'none';
     } else {
-        // Back at top state
+        // Back at top state (transparent on home, solid on inner pages)
         if (heroSection) {
             header.style.background = 'rgba(250, 248, 245, 0.15)';
             header.style.boxShadow = 'none';
@@ -22,7 +22,14 @@ window.addEventListener('scroll', () => {
             header.style.background = 'rgba(59, 51, 44, 1)';
         }
     }
-});
+}
+
+// Listen for standard scrolling AND mobile touch scrolling
+window.addEventListener('scroll', checkScroll, { passive: true });
+window.addEventListener('touchmove', checkScroll, { passive: true });
+
+// Run once immediately in case the user refreshes halfway down the page
+checkScroll();
 
 // 2. LUXURY SCROLL REVEAL ANIMATIONS
 const fadeElements = document.querySelectorAll('.service-card, .product-card, .team-card, .info-block');
