@@ -258,3 +258,70 @@ header {
     .services-grid, .essentials-grid { flex-direction: column; align-items: center; }
     .service-card, .product-card { width: 100%; max-width: 100%; }
 }
+/* =========================================
+   TEAM SECTION STYLING
+   ========================================= */
+.team-section {
+    padding: 100px 10%;
+    background-color: var(--pearl);
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.team-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 320px;
+    text-align: center;
+    transition: transform 0.4s ease;
+}
+
+.team-img-wrapper {
+    width: 100%;
+    height: 400px; /* Tall, editorial style portrait */
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.team-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%); /* High-end look */
+    transition: all 0.6s ease;
+}
+
+.team-card:hover img {
+    filter: grayscale(0%); /* Brings them to life on hover */
+    transform: scale(1.05);
+}
+
+.team-info h3 {
+    font-size: 24px;
+    color: var(--forest);
+    margin-bottom: 5px;
+}
+
+.team-info .role {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #A39182;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.team-info .desc {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+}
