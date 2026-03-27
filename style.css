@@ -413,7 +413,6 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* THE FIX: A direct, highly reliable image link that loads instantly */
     background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920'); 
     background-size: cover;
     background-position: center;
@@ -421,16 +420,13 @@ html {
     position: relative; 
 }
 
-/* Added dark overlay for better text readability across all elements */
+/* Adds a dark, moody overlay to the background image */
 .contact-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(59, 51, 44, 0.6); /* Match the hero overlay */
-    z-index: 1; /* Sit between the image and the content */
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(59, 51, 44, 0.6); 
+    z-index: 1;
 }
 
 .contact-container {
@@ -438,38 +434,51 @@ html {
     background: white;
     width: 100%;
     max-width: 1100px;
-    box-shadow: 0 20px 50px rgba(59, 51, 44, 0.08);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     border-radius: 8px;
     overflow: hidden;
-    position: relative; /* Ensure it sits over the overlay */
-    z-index: 2; /* Sit over the overlay */
+    position: relative;
+    z-index: 2; /* Ensures the form sits on top of the background */
 }
-
-/* Ensure the contact Us title is also layered and readable */
-.section-title {
-    text-align: center;
-    margin-bottom: 80px;
-    position: relative; /* Layered */
-    z-index: 2; /* Layered */
-}
-
-.section-title h2 {
-    font-size: 48px;
-    color: var(--forest);
-    margin-top: 10px;
-}
-
-/* --- The rest of your existing CSS remains the same --- */
 
 .contact-info {
     width: 40%;
-    /* Keep the dark brown background but overlay the subtle image pattern */
-    background: rgba(92, 74, 61, 0.9); /* Use an alpha channel to let the new image pattern bleed through slightly */
+    background: rgba(92, 74, 61, 0.95);
     color: white;
     padding: 60px 50px;
 }
 
-/* ... (rest of contact-info, info-block, etc.) ... */
+.contact-info h2 {
+    font-size: 42px;
+    margin: 15px 0 25px;
+    color: var(--sand);
+    line-height: 1.1;
+}
+
+.contact-info p {
+    font-size: 14px;
+    color: rgba(250, 248, 245, 0.8);
+    margin-bottom: 40px;
+}
+
+.info-block {
+    margin-bottom: 30px;
+}
+
+.info-block h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--sand);
+    margin-bottom: 8px;
+}
+
+.info-block p {
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 1.8;
+}
 
 .contact-form {
     width: 60%;
@@ -477,7 +486,61 @@ html {
     background: white;
 }
 
-/* ... (rest of contact-form, input-group, submit-btn, etc.) ... */
+.input-group {
+    margin-bottom: 30px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--forest);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.input-group input, 
+.input-group select, 
+.input-group textarea {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid #DDD;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--charcoal);
+    transition: 0.3s;
+    outline: none;
+}
+
+.input-group input:focus, 
+.input-group select:focus, 
+.input-group textarea:focus {
+    border-bottom: 1px solid var(--forest);
+}
+
+.submit-btn {
+    background: var(--forest);
+    color: var(--sand);
+    border: none;
+    padding: 18px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.4s;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.submit-btn:hover {
+    background: var(--charcoal);
+    color: white;
+}
 
 /* Mobile Responsiveness for Form */
 @media (max-width: 768px) {
