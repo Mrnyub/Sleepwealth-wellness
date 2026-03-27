@@ -236,49 +236,30 @@ header {
 .submit-btn:hover { background: var(--charcoal); color: white; }
 
 /* =========================================
-   MOBILE RESPONSIVENESS (FLAWLESS STACKING)
+   MOBILE RESPONSIVENESS (COMPACT & FLAWLESS)
    ========================================= */
 @media (max-width: 992px) { 
-    .contact-container { 
-        flex-direction: column; 
-        max-width: 600px; 
-    }
-    .contact-info, .contact-form { 
-        flex: 0 0 100%; /* Stacks them 100% width on smaller screens */
-        padding: 40px 30px; 
+    /* 1. Shrink the Header so it doesn't cover the whole screen */
+    header { padding: 15px 20px; flex-direction: column; gap: 10px; }
+    .logo { font-size: 20px; }
+    .nav-links { gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 5px; }
+    .book-btn { padding: 8px 16px; font-size: 10px; }
+
+    /* 2. Shrink Giant Desktop Padding across ALL sections */
+    .hero-content h1 { font-size: 42px; margin: 15px 0 25px; }
+    .experience, .services, .essentials-shop, .team-section, .story-section { 
+        padding: 60px 5%; /* Cut from 120px down to 60px */
+        gap: 40px; /* Cut gaps in half */
     }
     
-    header { padding: 20px; flex-direction: column; gap: 15px; }
-    .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px; }
-    .hero-content h1 { font-size: 48px; }
-    .hero-btns { flex-direction: column; }
-    .experience, .story-container { flex-direction: column; padding: 60px 5%; text-align: center; }
-    .exp-text, .exp-image, .story-text, .story-img { width: 100%; }
-    .story-img img, .exp-image img { height: 350px; }
-    .services-grid, .essentials-grid { flex-direction: column; align-items: center; }
-    .service-card, .product-card { width: 100%; max-width: 100%; }
-}
-.team-grid {
-    display: flex;
-    flex-direction: column; /* This forces the vertical top-middle-bottom stack */
-    align-items: center;    /* Centers the cards perfectly on the page */
-    gap: 80px;              /* Adds luxurious breathing room between each person */
-    margin-top: 50px;
-}
+    /* 3. Fix Contact Form Spacing */
+    .contact-section { padding: 130px 5% 60px; } /* Keeps top padding for header, shrinks bottom */
+    .contact-container { flex-direction: column; width: 100%; max-width: 100%; }
+    .contact-info { padding: 40px 20px; } /* Tighter text box */
+    .contact-form { padding: 40px 20px; } /* Tighter form box */
 
-.team-card {
-    width: 100%;
-    max-width: 450px; /* Makes the cards slightly wider for the vertical layout */
-    text-align: center;
-    transition: transform 0.4s ease;
-}
-
-
-.team-img-wrapper {
-    width: 100%;
-    height: 500px; 
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    /* 4. Fix Team Images */
+    .team-grid { gap: 40px; }
+    .team-img-wrapper { height: 350px; } /* Shorter images for mobile scrolling */
+    .exp-image img, .story-img img { height: 300px; }
 }
