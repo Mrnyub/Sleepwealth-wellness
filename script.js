@@ -8,10 +8,12 @@ const heroSection = document.querySelector('.hero');
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
+        // Scrolled down state
         header.style.background = 'rgba(59, 51, 44, 0.98)';
         header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
         header.style.borderBottom = 'none';
     } else {
+        // Back at top state
         if (heroSection) {
             header.style.background = 'rgba(250, 248, 245, 0.15)';
             header.style.boxShadow = 'none';
@@ -47,22 +49,22 @@ const submitBtn = document.getElementById('submitBtn');
 
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-        // Stop the form from causing a 405 GitHub Error
+        // Prevent GitHub 405 Method Not Allowed error
         e.preventDefault(); 
         
-        // --- THIS CREATES THE POP-UP PROMPT ---
+        // Browser Alert Prompt
         alert("Thank you! Your message has been sent successfully. Our concierge will get back to you soon.");
         
-        // Change button text to show success
+        // Update Button UI
         const originalText = submitBtn.innerText;
         submitBtn.innerText = "Message Sent Successfully!";
         submitBtn.style.background = "#A39182"; 
         submitBtn.style.color = "white";
         
-        // Clear the form fields
+        // Clear inputs
         contactForm.reset();
 
-        // Change the button back to normal after 3 seconds
+        // Revert button after 3 seconds
         setTimeout(() => {
             submitBtn.innerText = originalText;
             submitBtn.style.background = "var(--forest)";
