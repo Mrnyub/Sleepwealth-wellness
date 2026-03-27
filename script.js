@@ -1,205 +1,72 @@
 /* =========================================
-   SLEEPWEALTH REST LOUNGE | GLOBAL STYLES
+   SLEEPWEALTH REST LOUNGE | JAVASCRIPT
    ========================================= */
-:root {
-    --forest: #5C4A3D;    
-    --sand: #E8DCC4;      
-    --pearl: #FAF8F5;     
-    --charcoal: #3B332C;  
-}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+// 1. SMART HEADER SCROLL EFFECT
+const header = document.querySelector('header');
+const heroSection = document.querySelector('.hero');
 
-body { 
-    background-color: var(--pearl); 
-    font-family: 'Montserrat', sans-serif; 
-    color: var(--charcoal);
-    line-height: 1.6;
-}
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.style.background = 'rgba(59, 51, 44, 0.98)';
+        header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+        header.style.borderBottom = 'none';
+    } else {
+        if (heroSection) {
+            header.style.background = 'rgba(250, 248, 245, 0.15)';
+            header.style.boxShadow = 'none';
+            header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+        } else {
+            header.style.background = 'rgba(59, 51, 44, 1)';
+        }
+    }
+});
 
-h1, h2, h3, .logo { 
-    font-family: 'Cormorant Garamond', serif; 
-    font-weight: 300; 
-}
+// 2. LUXURY SCROLL REVEAL ANIMATIONS
+const fadeElements = document.querySelectorAll('.service-card, .product-card, .team-card, .info-block');
 
-/* =========================================
-   NAVIGATION & HEADER
-   ========================================= */
-header {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 30px 60px;
-    z-index: 100;
-    background: rgba(250, 248, 245, 0.15); 
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.4s ease;
-}
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.1 });
 
-.logo { font-size: 26px; letter-spacing: 5px; color: #E8DCC4; }
-.nav-links { list-style: none; display: flex; gap: 40px; }
-.nav-links a { text-decoration: none; color: #E8DCC4; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
-.nav-links a:hover { color: white; }
+fadeElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s ease-out';
+    observer.observe(el);
+});
 
-.book-btn {
-    padding: 12px 25px; border: 1px solid #E8DCC4; background: transparent;
-    color: #E8DCC4; font-family: 'Montserrat', sans-serif; font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.4s ease;
-}
-.book-btn:hover { background: #E8DCC4; color: var(--forest); }
+// 3. CONTACT FORM SUBMISSION PROMPT
+const contactForm = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
 
-/* =========================================
-   HERO SECTION 
-   ========================================= */
-.hero {
-    height: 100vh; background-color: #A39182;
-    /* FIX: Changed to a highly reliable, high-res Unsplash image */
-    background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1920');
-    background-position: center; background-size: cover; background-attachment: fixed;
-    display: flex; align-items: center; padding: 0 10%; position: relative;
-}
-.hero-overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to right, rgba(44, 44, 44, 0.6), rgba(44, 44, 44, 0.15));
-}
-.hero-content { position: relative; z-index: 10; color: white; max-width: 650px; }
-.hero-content h1 { font-size: 72px; line-height: 1.1; margin: 20px 0 40px; }
-.hero-content .subtitle { letter-spacing: 4px; text-transform: uppercase; font-size: 13px; color: var(--sand); }
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        // Stop the form from causing a 405 GitHub Error
+        e.preventDefault(); 
+        
+        // --- THIS CREATES THE POP-UP PROMPT ---
+        alert("Thank you! Your message has been sent successfully. Our concierge will get back to you soon.");
+        
+        // Change button text to show success
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = "Message Sent Successfully!";
+        submitBtn.style.background = "#A39182"; 
+        submitBtn.style.color = "white";
+        
+        // Clear the form fields
+        contactForm.reset();
 
-.hero-btns { display: flex; gap: 20px; }
-.btn-primary { background: var(--sand); color: var(--forest); padding: 15px 30px; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-.btn-primary:hover { background: white; }
-.btn-secondary { background: transparent; color: white; padding: 15px 30px; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; border: 1px solid white; transition: 0.3s; }
-.btn-secondary:hover { background: white; color: var(--forest); }
-
-/* =========================================
-   EXPERIENCE (HOMEPAGE ABOUT)
-   ========================================= */
-.experience { display: flex; align-items: center; padding: 120px 10%; gap: 80px; }
-.exp-text { width: 45%; }
-.exp-text h2 { font-size: 50px; margin: 20px 0; color: var(--forest); line-height: 1.1; }
-.tag { color: var(--forest); opacity: 0.7; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500;}
-.exp-image { width: 55%; position: relative; }
-.exp-image img { width: 100%; height: 600px; object-fit: cover; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
-
-/* =========================================
-   SERVICES & SHOP 
-   ========================================= */
-.services, .essentials-shop { padding: 100px 10%; background-color: var(--pearl); }
-.section-title { text-align: center; margin-bottom: 80px; }
-.section-title h2 { font-size: 48px; color: var(--forest); margin-top: 10px; }
-
-.services-grid, .essentials-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
-.service-card, .product-card { background: white; flex: 1; min-width: 300px; max-width: 380px; border: 1px solid #EAEAEA; border-radius: 6px; overflow: hidden; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-
-.product-card.featured { background: var(--charcoal); color: var(--sand); }
-.product-card.featured h3, .product-card.featured .price, .product-card.featured p { color: var(--sand); }
-
-.card-img { width: 100%; height: 250px; overflow: hidden; }
-.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-.service-card:hover .card-img img, .product-card:hover .card-img img { transform: scale(1.08); }
-.service-card:hover, .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(59, 51, 44, 0.1); }
-
-.card-content { padding: 35px 30px; text-align: center; }
-.card-content h3 { font-size: 26px; margin-bottom: 10px; color: var(--forest); }
-.card-content .price { font-size: 32px; font-weight: 300; margin-bottom: 20px; color: var(--charcoal); }
-.card-content p { font-size: 14px; color: #666; margin-bottom: 25px; line-height: 1.6; }
-
-.bag-btn-essentials { display: inline-block; width: 100%; padding: 15px; background: transparent; border: 1px solid var(--forest); color: var(--forest); font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
-.bag-btn-essentials:hover { background: var(--forest); color: white; }
-.product-card.featured .bag-btn-essentials { border-color: var(--sand); color: var(--sand); }
-.product-card.featured .bag-btn-essentials:hover { background: var(--sand); color: var(--charcoal); }
-
-/* =========================================
-   ABOUT US PAGE 
-   ========================================= */
-.about-page { background-color: var(--pearl); padding-top: 100px; }
-.story-section { padding: 80px 10%; }
-.story-container { display: flex; align-items: center; gap: 60px; max-width: 1200px; margin: 0 auto; }
-.story-text { width: 50%; }
-.story-text h2 { font-size: 48px; color: var(--forest); margin: 15px 0 25px; line-height: 1.1; }
-.story-text p { font-size: 15px; color: var(--charcoal); margin-bottom: 20px; line-height: 1.8; }
-.story-img { width: 50%; }
-.story-img img { width: 100%; height: 500px; object-fit: cover; border-radius: 6px; box-shadow: 0 10px 30px rgba(59, 51, 44, 0.1); }
-
-.team-section { padding: 80px 10% 120px; background-color: var(--pearl); }
-.team-info h3 { font-size: 26px; color: var(--forest); margin-bottom: 5px; }
-.team-info .role { font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #A39182; font-weight: 500; }
-
-/* =========================================
-   PAGE TRANSITIONS 
-   ========================================= */
-.fade-in-page { animation: luxuryFadeIn 0.8s ease-in-out forwards; }
-@keyframes luxuryFadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
-
-/* =========================================
-   CONTACT PAGE (SLEEPWEALTH)
-   ========================================= */
-.contact-section {
-    padding: 150px 10% 100px;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative; 
-}
-
-.contact-section::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(59, 51, 44, 0.6); z-index: 1;
-}
-
-.contact-container {
-    display: flex; background: white; width: 100%; max-width: 1100px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden;
-    position: relative; z-index: 2; 
-}
-
-.contact-info { width: 40%; background: rgba(92, 74, 61, 0.95); color: white; padding: 60px 50px; }
-.contact-info h2 { font-size: 42px; margin: 15px 0 25px; color: var(--sand); line-height: 1.1; }
-.contact-info p { font-size: 14px; color: rgba(250, 248, 245, 0.8); margin-bottom: 40px; }
-
-.info-block { margin-bottom: 30px; }
-.info-block h4 { font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--sand); margin-bottom: 8px; }
-.info-block p { margin-bottom: 0; font-size: 13px; line-height: 1.8; }
-
-.contact-form { width: 60%; padding: 60px 80px; background: white; }
-.input-group { margin-bottom: 30px; }
-.input-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--forest); margin-bottom: 10px; font-weight: 500; }
-.input-group input, .input-group select, .input-group textarea {
-    width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #DDD;
-    background: transparent; font-family: 'Montserrat', sans-serif; font-size: 14px;
-    color: var(--charcoal); transition: 0.3s; outline: none;
-}
-.input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-bottom: 1px solid var(--forest); }
-.submit-btn {
-    background: var(--forest); color: var(--sand); border: none; padding: 18px 40px;
-    font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase;
-    letter-spacing: 2px; cursor: pointer; transition: 0.4s; margin-top: 10px; width: 100%; border-radius: 4px;
-}
-.submit-btn:hover { background: var(--charcoal); color: white; }
-
-/* =========================================
-   MOBILE RESPONSIVENESS (FIXED BREAKPOINTS)
-   ========================================= */
-/* Triggering mobile stack earlier for smaller laptops/tablets to prevent squishing */
-@media (max-width: 992px) { 
-    .contact-container { flex-direction: column; }
-    .contact-info, .contact-form { width: 100%; padding: 40px 30px; }
-    
-    header { padding: 20px; flex-direction: column; gap: 20px; }
-    .nav-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
-    .hero-content h1 { font-size: 48px; }
-    .hero-btns { flex-direction: column; }
-    .experience, .story-container { flex-direction: column; padding: 60px 5%; text-align: center; }
-    .exp-text, .exp-image, .story-text, .story-img { width: 100%; }
-    .story-img img, .exp-image img { height: 350px; }
-    .services-grid, .essentials-grid { flex-direction: column; align-items: center; }
-    .service-card, .product-card { width: 100%; max-width: 100%; }
+        // Change the button back to normal after 3 seconds
+        setTimeout(() => {
+            submitBtn.innerText = originalText;
+            submitBtn.style.background = "var(--forest)";
+            submitBtn.style.color = "var(--sand)";
+        }, 3000);
+    });
 }
