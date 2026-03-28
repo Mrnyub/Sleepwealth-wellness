@@ -6,8 +6,11 @@
     <title>Sleepwealth | Rest Lounge</title>
     
     <link rel="stylesheet" href="style.css">
-    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://app.snipcart.com">
+    <link rel="preconnect" href="https://cdn.snipcart.com">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.css" />
 </head>
 <body>
 
@@ -15,17 +18,18 @@
         <div class="logo">SLEEPWEALTH</div>
         <nav>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="#" style="color: white; border-bottom: 1px solid white;">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="#services">Our Services</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#reserve">Reservations</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
-        <div class="header-cta">
-            <a href="#reserve" class="book-btn" style="text-decoration: none; display: inline-block; padding: 10px 20px; border: 1px solid #333; color: #333; transition: 0.3s;">
-                Book a Session
-            </a>
+        <div class="header-cta" style="display: flex; gap: 10px; align-items: center;">
+            <button class="snipcart-checkout book-btn" style="background-color: #D4AF37; color: #121212; border: none; padding: 10px 15px;">
+                Basket (<span class="snipcart-items-count">0</span>)
+            </button>
+            <a href="#reserve" class="book-btn" style="padding: 10px 15px;">Book</a>
         </div>
     </header>
 
@@ -41,31 +45,22 @@
         </div>
     </section>
 
-    <section class="experience" id="about">
-        <div class="exp-text">
-            <span class="tag">Rest & Recover</span>
-            <h2>Your Time to Recharge.</h2>
-            <p><strong>Sleepwealth Lounge</strong> is a place where people can relax, rest, and take a break from stress. It offers a calm and comfortable environment that helps improve a person's physical and mental well-being.</p>
-        </div>
-        <div class="exp-image">
-            <img src="https://images.unsplash.com/photo-1631805991633-eb01749753af?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cozy Rest Lounge" style="width: 100%; height: 600px; object-fit: cover; border-radius: 4px;">
-        </div>
-    </section>
-
     <section class="services" id="services">
         <div class="section-title">
             <span class="tag">Curated Reset</span>
-            <h2>Our Modalities</h2>
+            <h2>Our Modalities & Retail</h2>
         </div>
 
-        <div class="services-grid">
+        <div class="services-grid"> 
+            
             <div class="service-card">
-                <div class="card-img">
+                <div class="card-img" style="position: relative;">
+                    <div class="availability-badge" id="chairAvailabilityBadge">5 Available</div>
                     <img src="https://images.unsplash.com/photo-1611769446316-c4b0ac90ed6d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Massage Chair">
                 </div>
                 <div class="card-content">
                     <h3>Massage Chair Sessions</h3>
-                    <p>Relax using premium massage chairs to release body pain, stress, and physical tension after a long day of work. (₱500 / Hour)</p>
+                    <p>Relax using premium massage chairs. <br><strong>(₱60 for 15 mins | ₱100 for 30 mins)</strong></p>
                 </div>
             </div>
 
@@ -75,21 +70,40 @@
                 </div>
                 <div class="card-content">
                     <h3>Quiet Room Access</h3>
-                    <p>Utilize the standard quiet room with relaxing scents and soft music to help customers relax, nap, and reduce daily anxiety. (₱350 / Hour)</p>
+                    <p>Utilize the standard quiet room to nap and reduce anxiety. <br><strong>(₱100 / Hour)</strong></p>
                 </div>
             </div>
-        </div>
-    </section>
+
+            <div class="service-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop" alt="Sleepwealth Eye Mask">
+                </div>
+                <div class="card-content">
+                    <h3>Take-Home Eye Mask</h3>
+                    <p>Continue your rest at home with our signature silk mask.</p>
+                    <button class="snipcart-add-item submit-res-btn" style="margin-top: 15px;"
+                        data-item-id="sleepwealth-mask"
+                        data-item-price="50.00"
+                        data-item-url="/index.html"
+                        data-item-name="Comfort Eye Mask"
+                        data-item-image="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop">
+                        Add to Yellow Basket (₱50)
+                    </button>
+                </div>
+            </div>
+
+        </div> </section>
 
     <section class="reservation-section" id="reserve">
         <div class="reservation-container">
             <div class="section-title">
                 <span class="tag">Secure Your Peace</span>
                 <h2>Book Your Session</h2>
-                <p>Reserve your preferred time and modality. Walk-ins are subject to availability.</p>
+                <p>Build your perfect rest experience. The total price updates automatically.</p>
             </div>
 
             <form id="reservationForm" class="reservation-form">
+                
                 <div class="form-row">
                     <div class="form-group">
                         <label for="resName">Full Name</label>
@@ -107,29 +121,56 @@
                         <input type="date" id="resDate" required>
                     </div>
                     <div class="form-group">
-                        <label for="resTime">Select Time</label>
+                        <label for="resTime">Select Arrival Time</label>
                         <input type="time" id="resTime" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="resModality">Lounge Experience</label>
-                        <select id="resModality" required>
-                            <option value="">Choose an experience...</option>
-                            <option value="massage">Massage Chair Session (₱500/hr)</option>
-                            <option value="quiet">Quiet Room Access (₱350/hr)</option>
-                            <option value="both">Full Reset Package: Both (₱800/2 hrs)</option>
+                        <label for="quietRoom">Quiet Room Access</label>
+                        <select id="quietRoom" class="calc-input">
+                            <option value="0">None</option>
+                            <option value="100">1 Hour (₱100)</option>
+                            <option value="200">2 Hours (₱200)</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="resDuration">Duration</label>
-                        <select id="resDuration" required>
-                            <option value="1">1 Hour</option>
-                            <option value="2">2 Hours</option>
-                            <option value="3">3 Hours</option>
+                        <label for="massageChair">Massage Chair Session</label>
+                        <select id="massageChair" class="calc-input">
+                            <option value="0">None</option>
+                            <option value="60">15 Minutes (₱60)</option>
+                            <option value="100">30 Minutes (₱100)</option>
                         </select>
                     </div>
+                </div>
+
+                <div class="form-group add-ons-group">
+                    <label>In-Lounge Add-Ons</label>
+                    <div class="checkbox-list">
+                        <label><input type="checkbox" id="addonMask" value="50" class="calc-input"> Eye Mask (+₱50)</label>
+                        <label><input type="checkbox" id="addonScent" value="59" class="calc-input"> Relaxing Scent (+₱59)</label>
+                        <label><input type="checkbox" id="addonPhones" value="79" class="calc-input"> Headphones (+₱79)</label>
+                    </div>
+                </div>
+
+                <div class="form-row" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label for="discountType">Applicable Discount</label>
+                        <select id="discountType" class="calc-input">
+                            <option value="0">None (Regular Rate)</option>
+                            <option value="0.10">Student (10% Off)</option>
+                            <option value="0.10">Worker (10% Off)</option>
+                            <option value="0.10">Senior Citizen (10% Off)</option>
+                        </select>
+                        <span style="font-size: 12px; color: #888; margin-top: 8px; font-style: italic;">
+                            *Please present a valid ID at the reception to avail of the discount.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="live-total-box">
+                    <h4>Estimated Total: <span id="liveTotal">₱0.00</span></h4>
                 </div>
 
                 <button type="submit" class="submit-res-btn">Confirm Reservation</button>
@@ -137,11 +178,64 @@
             
             <div id="resSuccess" class="res-success-msg" style="display: none;">
                 <h3>Reservation Confirmed!</h3>
-                <p>We look forward to hosting your restful break. A confirmation email has been sent.</p>
+                <p>We look forward to hosting your restful break. Your spot has been secured.</p>
             </div>
         </div>
     </section>
 
+    <section class="tracking" style="padding: 80px 20px; text-align: center;">
+        <span class="tag">Verify Status</span>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; margin-bottom: 20px;">Reservation Tracker</h2>
+        <p style="margin-bottom: 20px; font-family: 'Montserrat', sans-serif;">Enter your Reference ID to check your booking status.</p>
+        <form id="trackingForm" style="display: flex; justify-content: center; gap: 10px; max-width: 500px; margin: 0 auto;">
+            <input type="text" placeholder="e.g. SLP-12345" required style="padding: 12px; width: 100%; border: 1px solid #ccc;">
+            <button type="submit" class="submit-res-btn" style="margin: 0; width: auto; padding: 12px 20px;">Track</button>
+        </form>
+    </section>
+
+    <section class="reviews" style="background-color: #f9f8f6; padding: 80px 20px; text-align: center;">
+        <span class="tag">Guest Experiences</span>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; margin-bottom: 40px;">Review & Feedback</h2>
+        <div id="dynamicReviewGrid" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;">
+            </div>
+        
+        <div style="max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border: 1px solid #ddd;">
+            <h3 style="font-family: 'Montserrat', sans-serif; margin-bottom: 15px;">Leave a Review</h3>
+            <form id="reviewForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="reviewName" placeholder="Your Name" required style="padding: 10px; border: 1px solid #ccc;">
+                <select id="reviewRating" required style="padding: 10px; border: 1px solid #ccc;">
+                    <option value="5">⭐⭐⭐⭐⭐ - Incredibly Restful</option>
+                    <option value="4">⭐⭐⭐⭐ - Very Relaxing</option>
+                    <option value="3">⭐⭐⭐ - Good</option>
+                </select>
+                <textarea id="reviewText" rows="3" placeholder="How was your lounge experience?" required style="padding: 10px; border: 1px solid #ccc;"></textarea>
+                <button type="submit" class="submit-res-btn" style="margin:0;">Submit Feedback</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="suppliers" style="padding: 60px 20px; text-align: center; border-top: 1px solid #eee;">
+        <span class="tag">Quality Assured</span>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; margin-bottom: 10px;">Our Premium Suppliers</h2>
+        <p style="color: #666; font-family: 'Montserrat', sans-serif; margin-bottom: 30px;">We partner exclusively with top-tier wellness manufacturers.</p>
+        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; font-family: 'Montserrat', sans-serif; font-weight: 500; color: #333;">
+            <span>[ OGAWA Massage Chairs ]</span>
+            <span>[ DoTERRA Essential Oils ]</span>
+            <span>[ Sony Noise-Canceling Audio ]</span>
+            <span>[ Brooklinen Silk Fabrics ]</span>
+        </div>
+    </section>
+
+    <footer style="background-color: #121212; color: #fff; padding: 60px 20px; text-align: center;">
+        <div class="logo" style="color: #fff; margin-bottom: 20px;">SLEEPWEALTH</div>
+        <p style="font-family: 'Montserrat', sans-serif; margin-bottom: 10px;">Email: rest@sleepwealth.ph | Phone: +63 917 123 4567</p>
+        <p style="font-family: 'Montserrat', sans-serif; margin-bottom: 30px;">Cebu City, Philippines</p>
+        
+        <a href="inventory.html" style="color: #D4AF37; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 14px;">Staff Portal (Inventory System) &rarr;</a>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="ZjcyM2M0YTAtOWQ5Zi00ODljLTkwZDQtMDY2Mzk1NTE3ZDMyNjM5MTAwMDE5Mzc3NTAxNTI1" data-currency="php"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
