@@ -1,108 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sleepwealth | Rest Lounge</title>
+function checkAccess() {
+    const pin = document.getElementById('pinCode').value;
+    if (pin === "1234") {
+        document.getElementById('authScreen').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadDashboardData();
+    } else {
+        alert("Incorrect PIN.");
+        document.getElementById('pinCode').value = '';
+    }
+}
+
+function logout() {
+    location.reload();
+}
+
+function loadDashboardData() {
+    // Load counts from localStorage or use defaults
+    const totalChairs = parseInt(localStorage.getItem('sw_total_chairs')) || 5;
+    const bookedChairs = parseInt(localStorage.getItem('sleepwealth_booked_chairs')) || 0;
     
-    <link rel="stylesheet" href="style.css">
+    const maskStock = localStorage.getItem('sw_stock_masks') || "45";
+    const scentStock = localStorage.getItem('sw_stock_scents') || "32";
+    const phoneStock = localStorage.getItem('sw_stock_phones') || "18";
+
+    // Update the Display
+    document.getElementById('statChairs').innerText = `${totalChairs - bookedChairs} / ${totalChairs}`;
+    document.getElementById('statMasks').innerText = `${maskStock} Units`;
+    document.getElementById('statScents').innerText = `${scentStock} Units`;
+    document.getElementById('statPhones').innerText = `${phoneStock} Units`;
+
+    // Load Log
+    const logContainer = document.getElementById('reservationLog');
+    logContainer.innerHTML = ''; 
+    if (bookedChairs === 0) {
+        logContainer.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#999; padding: 40px;">No active bookings.</td></tr>';
+    } else {
+        for (let i = 1; i <= bookedChairs; i++) {
+            logContainer.innerHTML += `
+                <tr>
+                    <td><strong>SLP-REC-${i}</strong></td>
+                    <td>Guest User</td>
+                    <td>Massage Chair Session</td>
+                    <td>Pending ID Verify</td>
+                    <td><span class="status-badge status-confirmed">Confirmed</span></td>
+                </tr>
+            `;
+        }
+    }
+}
+
+// Function to edit counts
+function updateCount(type, label) {
+    const newValue = prompt(`Enter new number for ${label}:`);
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.css" />
-</head>
-<body class="about-page">
+    if (newValue !== null && !isNaN(newValue)) {
+        if (type === 'chairs') localStorage.setItem('sw_total_chairs', newValue);
+        if (type === 'masks') localStorage.setItem('sw_stock_masks', newValue);
+        if (type === 'scents') localStorage.setItem('sw_stock_scents', newValue);
+        if (type === 'phones') localStorage.setItem('sw_stock_phones', newValue);
+        
+        loadDashboardData(); // Refresh display
+    }
+}
 
-    <header style="background: rgba(59, 51, 44, 1); box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-        <div class="logo">SLEEPWEALTH</div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" style="color: white; border-bottom: 1px solid white; padding-bottom: 5px;">About Us</a></li>
-                <li><a href="index.html#services">Our Services</a></li>
-                <li><a href="index.html#shop">Essentials Shop</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-        <div class="header-cta">
-            <button class="book-btn snipcart-checkout" style="border-color: #FAF8F5; color: #FAF8F5;">
-                View Bag (<span class="snipcart-items-count">0</span>)
-            </button>
-        </div>
-    </header>
-
-    <section class="story-section">
-        <div class="story-container">
-            <div class="story-text">
-                <span class="tag">Our Origins</span>
-                <h2>The Art of Doing Nothing.</h2>
-                <p>In a hyper-connected world that glorifies the hustle, true rest has become the ultimate luxury. Sleepwealth was founded as an antidote to modern burnout.</p>
-                
-                <div style="margin-top: 30px; background: rgba(163, 145, 130, 0.1); padding: 25px; border-left: 3px solid var(--forest);">
-                    <h3 style="color: var(--forest); font-size: 20px; margin-bottom: 10px;">Our Mission</h3>
-                    <p style="font-size: 14px; margin-bottom: 25px;">To provide a relaxing and comfortable place for students who have vacant time, workers, and working students who need rest and peace of mind.</p>
-                    
-                    <h3 style="color: var(--forest); font-size: 20px; margin-bottom: 10px;">Our Vision</h3>
-                    <p style="font-size: 14px; margin-bottom: 0;">To become a well-known wellness lounge that helps workers and working students relax, reduce stress, and maintain a healthy lifestyle.</p>
-                </div>
-            </div>
-            <div class="story-img">
-                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000" alt="Sleepwealth Quiet Room">
-            </div>
-        </div>
-    </section>
-
-  <section class="team-section">
-        <div class="section-title">
-            <span class="tag">The People Behind the Peace</span>
-            <h2>Meet Our Team</h2>
-        </div>
-
-        <div class="team-grid">
-            <div class="team-card">
-                <div class="team-img-wrapper">
-                    <img src="ceo.jpg" alt="Mateo Alcantara - CEO">
-                </div>
-                <div class="team-info">
-                    <h3>Nash Laquinon</h3>
-                    <p class="role">Founder & CEO</p>
-                    <p class="desc">A visionary dedicated to bringing accessible mental wellness to the local community.</p>
-                </div>
-            </div>
-
-            <div class="team-card">
-                <div class="team-img-wrapper">
-                    <img src="manager.jpg" alt="Isabella Reyes - Manager">
-                </div>
-                <div class="team-info">
-                    <h3>Trisha Mae Awe</h3>
-                    <p class="role">Operations Manager</p>
-                    <p class="desc">Ensuring every guest experiences the perfect atmosphere of stillness and reset.</p>
-                </div>
-            </div>
-
-            <div class="team-card">
-                <div class="team-img-wrapper">
-                    <img src="staff.jpg" alt="Liam Sy - Staff">
-                </div>
-                <div class="team-info">
-                    <h3>Rhejane Mae Gaballo</h3>
-                    <p class="role">Wellness Concierge</p>
-                    <p class="desc">Your guide to tranquility, specialized in curated aromatherapy and lounge assistance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bottom-cta" style="background-color: var(--forest); text-align: center; padding: 100px 10%;">
-        <h2 style="color: var(--sand); font-size: 42px; margin-bottom: 30px;">Ready to disconnect?</h2>
-        <a href="index.html#services" class="btn-primary" style="display:inline-block; border: 1px solid var(--sand);">View Our Modalities</a>
-    </section>
-
-    <div hidden id="snipcart" 
-         data-api-key="ZjcyM2M0YTAtOWQ5Zi00ODljLTkwZDQtMDY2Mzk1NTE3ZDMyNjM5MTAwMDE5Mzc3NTAxNTI1" 
-         data-currency="php"></div>
-    <script async src="https://cdn.snipcart.com/themes/v3.0.31/default/snipcart.js"></script>
-
-</body>
-</html>
+function resetLounge() {
+    if (confirm("Reset current bookings to zero?")) {
+        localStorage.setItem('sleepwealth_booked_chairs', 0);
+        loadDashboardData();
+    }
+}
